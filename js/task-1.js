@@ -1,21 +1,25 @@
-const apartment = {
-  imgUrl: 'https://via.placeholder.com/640x480',
-  descr: 'Просторная квартира в центре',
-  rating: 4.7,
-  price: 5000,
-  tags: ['premium', 'promoted', 'top', 'trusted'],
-  owner: {
-    name: 'Генри Сибола',
-    phone: '982-126-1588',
-    email: 'henry.carter@aptmail.com'
-  }
+const account = {
+  owner: 'Mango',
+  balance: 24000,
+  discount: 0.1,
+  orders: ['order-1', 'order-2', 'order-3'],
+  changeDiscount(value) {
+    this.discount = value;
+  },
+  showOrders() {
+    return this.orders;
+  },
+  addOrder(cost, order) {
+    this.balance -= cost;
+    this.orders.push(order);
+  },
 };
 
-// Пиши код ниже этой строки
-apartment.area = 60;
-apartment.rooms = 3;
-apartment.location = {};
-apartment.location.country = 'Ямайка';
-apartment.location.city = 'Кингстон';
+account.changeDiscount(0.15);
+console.log(account.discount); // 0.15
 
-console.table(apartment)
+console.table(account.showOrders()); // ['order-1', 'order-2', 'order-3']
+
+account.addOrder(5000, 'order-4');
+console.log(account.balance); // 19000
+console.table(account.showOrders()); // ['order-1', 'order-2', 'order-3', 'order-4']
